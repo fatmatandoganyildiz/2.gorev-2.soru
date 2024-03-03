@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form onsubmit="uret(event)">
+      <div>
+        <label for="minRange">Minimum Değer</label>
+        <input type="range" id="minRange" name="minRange" />
+        <button type="button" onclick="secClick('min')">Seç</button>
+        <input type="text" id="minValue" name="minValue" disabled />
+      </div>
+      <div>
+        <label for="maxRange">Maksimum Değer</label>
+        <input type="range" id="maxRange" name="maxRange" />
+        <button type="button" onclick="secClick('max')">Seç</button>
+        <input type="text" id="maxValue" name="maxValue" disabled />
+      </div>
+      <input type="submit" value="Üret" />
+      <hr />
+      <p id="rasgeleSayi"></p>
+    </form>
+    <script>
+      function secClick(type) {
+        const rangeInput = document.getElementById(type + "Range");
+        const valueInput = document.getElementById(type + "Value");
+        valueInput.value = rangeInput.value;
+      }
+
+      function uret(event) {
+        event.preventDefault();
+        const rasgeleSayi = document.getElementById("rasgeleSayi");
+        const min = parseInt(document.getElementById("minValue").value);
+        const max = parseInt(document.getElementById("maxValue").value);
+        const random = Math.floor(Math.random() * (max - min + 1)) ;
+        rasgeleSayi.innerText = "Rastgele Sayı: " + random;
+      }
+    </script>
+  </body>
+</html>
